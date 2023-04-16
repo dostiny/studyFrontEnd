@@ -1,26 +1,47 @@
+"use client";
+
 import age from "./data";
-import Hello from "./hello";
+import food0 from "/public/food0.png";
+import food1 from "/public/food1.png";
+import Btn from "./btn";
+
+interface listType {
+  name: string;
+  img: any;
+}
 
 export default function Cart() {
+  let list: listType[] = [
+    { name: "Tomatoes", img: food0 },
+    { name: "Pasta", img: food1 },
+  ];
+
   return (
     <div>
-      <Hello />
       <h4 className="title">Cart</h4>
-      <CartItem />
-      <CartItem />
-      <CartItem />
-      <CartItem />
-      <CartItem />
+      {list.map((data: listType, i: number) => {
+        return <CartItem data={data} />;
+      })}
     </div>
   );
 }
 
-const CartItem = () => {
+interface propsData {
+  data: listType;
+}
+
+interface BtnColor {
+  color: string;
+}
+
+const CartItem = (data: propsData) => {
+  console.log(data);
   return (
     <div className="cart-item">
-      <p>상품명 {age}</p>
+      <p>{data.data.name}</p>
       <p>$40</p>
       <p>1개</p>
+      <Btn color="blue" />
     </div>
   );
 };
