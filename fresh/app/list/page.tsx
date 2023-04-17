@@ -18,7 +18,13 @@ export default function List() {
     { name: "Coconut", img: food2 },
   ];
 
-  const [cnt, setCnt] = useState<number>(0);
+  const [cnt, setCnt] = useState<number[]>([0, 0, 0]);
+
+  const plusCnt = (i: number) => {
+    let copy: number[] = [...cnt];
+    copy[i]++;
+    setCnt(copy);
+  };
 
   return (
     <div>
@@ -28,10 +34,10 @@ export default function List() {
           <div className="food" key={i}>
             <Image src={data.img} alt={data.img} className="food-img" />
             <h4>{data.name} $40</h4>
-            <span> {cnt} </span>
+            <span> {cnt[i]} </span>
             <button
               onClick={() => {
-                setCnt(cnt + 1);
+                plusCnt(i);
               }}
             >
               +
