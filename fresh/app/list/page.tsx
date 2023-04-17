@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import food0 from "/public/food0.png";
 import food1 from "/public/food1.png";
@@ -15,6 +18,8 @@ export default function List() {
     { name: "Coconut", img: food2 },
   ];
 
+  const [cnt, setCnt] = useState<number>(0);
+
   return (
     <div>
       <h4 className="title">상품목록</h4>
@@ -23,6 +28,14 @@ export default function List() {
           <div className="food" key={i}>
             <Image src={data.img} alt={data.img} className="food-img" />
             <h4>{data.name} $40</h4>
+            <span> {cnt} </span>
+            <button
+              onClick={() => {
+                setCnt(cnt + 1);
+              }}
+            >
+              +
+            </button>
           </div>
         );
       })}

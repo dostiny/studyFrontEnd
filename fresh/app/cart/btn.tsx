@@ -3,7 +3,16 @@ interface BtnColor {
 }
 
 const Btn = (props: BtnColor) => {
-  return <button style={{ color: props.color }}>버튼</button>;
+  return (
+    <button
+      style={{ color: props.color }}
+      onClick={() => {
+        console.log(1);
+      }}
+    >
+      버튼
+    </button>
+  );
 };
 
 export default Btn;
