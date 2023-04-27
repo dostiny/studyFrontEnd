@@ -17,31 +17,16 @@ const handleListen = () => console.log(`Listening on http://localhost:3000`);
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
 
+const sockets = [];
+
 /** 웹소켓 연결 (연결, 닫음, 메시지 받아오기, 메시지 보내기) */
-// wss.on("connection", (socket) => {
-//   console.log("Connected to Browser ⭕");
-//   socket.on("close", () => console.log("Disconnected to Browser ❌"));
-//   socket.on("message", (message) => {
-//     console.log(message.toString("utf8"));
-//   });
-//   socket.send("hello!!");
-// });
-// ===========>
-
-/** 함수 분리해서 만드는 버전 */
-function onSocketClose() {
-  console.log("Disconnected to Browser ❌");
-}
-
-function onSocketMessage(message) {
-  console.log(message.toString("utf8"));
-}
-
 wss.on("connection", (socket) => {
+  sockets.push(socket);
   console.log("Connected to Browser ⭕");
-  socket.on("close", onSocketClose);
-  socket.on("message", onSocketMessage);
-  socket.send("hello!!");
+  socket.on("close", () => console.log("Disconnected to Browser ❌"));
+  socket.on("message", (message) => {
+    sockets.forEach((aSocket) => aSocket.send(message.toString("utf8")));
+  });
 });
 
 server.listen(3000, handleListen);
