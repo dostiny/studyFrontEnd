@@ -1,20 +1,14 @@
 {
-  "name": "socket-server",
+  "name": "nodeapple",
   "version": "1.0.0",
-  "description": "NextJS, NodeJS, WebRTC and Websockets.",
-  "license": "MIT",
+  "description": "",
+  "main": "server.js",
   "scripts": {
-    "dev": "nodemon"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2",
-    "ws": "^8.13.0"
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.21.0",
-    "@babel/core": "^7.21.4",
-    "@babel/node": "^7.20.7",
-    "@babel/preset-env": "^7.21.4",
-    "nodemon": "^2.0.22"
+    "express": "^4.18.2"
   }
 }
