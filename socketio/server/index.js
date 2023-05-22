@@ -14,12 +14,23 @@ const io = new Server(server, {
   },
 });
 
+const message = (room, username, currentMessage) => {
+  return {
+    room: room,
+    author: username,
+    message: currentMessage,
+  };
+};
+
 io.on("connection", (socket) => {
   console.log(`User Connected: ${socket.id}`);
 
   // 방 접속
   socket.on("join_room", (data) => {
     socket.join(data);
+    socket
+      .to(data.room)
+      .emit("receive_message", message(data.room, "관리자", "환영합니다"));
     console.log(`User with ID: ${socket.id} joined room: ${data}`);
   });
   // 메시지 보내기
